@@ -1,5 +1,9 @@
 <?php
 
+/* * * * *\
+ *  Init *
+\* * * * */
+
 // Config
 require_once __DIR__ . '/config.php';
 
@@ -19,10 +23,29 @@ Flight::register('db', 'PDO', array('mysql:host='.$config['db']['host'].';dbname
   }
 );
 
-// Views
+
+
+/* * * * *\
+ * Views *
+\* * * * */
 
 Flight::route('/', function() {
   Flight::render('home');
+});
+
+
+
+/* * * * * * * * *\
+ * Data Handlers *
+\* * * * * * * * */
+
+Flight::route('POST /post-data', function() {
+  Flight::render('db-handlers/post-data');
+  die();
+});
+Flight::route('GET /get-data', function() {
+  Flight::render('db-handlers/post-data');
+  die();
 });
 
 
