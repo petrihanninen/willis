@@ -1,0 +1,12 @@
+{
+  "name": "petrihanninen/flight-php-sample",
+  "authors": [
+    {
+      "name": "Petri Hänninen",
+      "email": "petri.hanninen@dingle.fi"
+    }
+  ],
+  "require": {
+    "mikecao/flight": "^1.3"
+  }
+}
