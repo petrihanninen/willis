@@ -19,7 +19,7 @@ class CurlJson {
    * @return object             Response from sent request or empty object if
    *                            something fails
    */
-  public static function get($endpoint, $queryData = false) {
+  public function get($endpoint, $queryData = false) {
     $queryString = $queryData ? '?' . http_build_query($queryData) : '';
     $url = $endpoint . $queryString; // http://foo.com?fizz=buzz
     // Initialise a new curl session
@@ -36,7 +36,7 @@ class CurlJson {
     $resp = curl_exec($ch);
 
     // Check for errors
-    $err = self::handleRequestError($ch);
+    $err = $this->handleRequestError($ch);
 
     // Clean up
     curl_close($ch);
@@ -57,7 +57,7 @@ class CurlJson {
    * @return object       Response from sent request or empty object if
    *                      something fails
    */
-  public static function post($endpoint, $postData = []) {
+  public function post($endpoint, $postData = []) {
     $json = json_encode($postData);
 
     // Initialise a new curl session
@@ -76,7 +76,7 @@ class CurlJson {
     $resp = curl_exec($ch);
 
     // Check for errors
-    $err = self::handleRequestError($ch);
+    $err = $this->handleRequestError($ch);
 
     // Clean up
     curl_close($ch);
@@ -92,7 +92,7 @@ class CurlJson {
    *
    * @return string|bool  The error message or false if no error found
    */
-  private static function handleRequestError($ch) {
+  private function handleRequestError($ch) {
     return curl_error($ch) ? curl_error($ch) : false;
   }
 }
